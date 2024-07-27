@@ -3,11 +3,13 @@ from flask import Flask, request, Response, jsonify
 app = Flask(__name__)
 
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['POST', 'GET'],
+           headers={'Access-Control-Allow-Origin': '*', 'X-Finnhub-Secret': "cq87l0pr01qk4ja498g0"})
 def news_webhook():
     if request.method == 'POST':
         print("Data received from Finnhub Webhook is: ", request.json)
         return jsonify({'message': 'success'}), 200
+
 
 @app.route("/")
 def hello():
