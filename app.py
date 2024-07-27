@@ -8,6 +8,10 @@ def news_webhook():
         print("Data received from Webhook is: ", request.json)
         return Response(status=200)
 
+@app.route("/")
+def hello():
+  return 'Hello World!'
+
 app.run(host='0.0.0.0', port=8000)
 
 
