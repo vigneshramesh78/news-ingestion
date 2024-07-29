@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST', 'GET'])
 def news_webhook():
-    print("Data received from Finnhub Webhook is: ", request.json)
+    content = request.get_json(silent=True)
+    print("Data received from Finnhub Webhook is: ", content)
     if request.method == 'POST':
         print("post")
         return Response('post',status=200)
@@ -19,7 +20,6 @@ def hello():
 
 
 # app.run(host='0.0.0.0', port=8000)
-
 
 if __name__ == '__main__':
     app.run()
